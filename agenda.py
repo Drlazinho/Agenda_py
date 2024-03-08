@@ -39,11 +39,20 @@ def alterar_status_favorito(contatos, indice_contato):
     else:
         contatos[indice_contato_ajustado]["Favorito"] = True
         print(f"Contato adicionado aos Favoritos")
+    return
 
 def visualizar_favorito(contatos):
+    print("\nSua Lista de Favoritos")
     for indice, contato in enumerate(contatos):
         if(contatos[indice]["Favorito"]):
             print(f"[💖] - Nome: {contatos[indice]["Nome"]}, Telefone: {contatos[indice]["Telefone"]}, Email: {contatos[indice]["Email"]}")
+    return
+
+def deletar_contatos(contatos, indice_contato):
+    indice_contato_ajustado = int(indice_contato) - 1
+    contatos.remove(contatos[indice_contato_ajustado])
+    print("\nContato removido")
+    return
 
 contatos = []
 while True:
@@ -78,5 +87,10 @@ while True:
         alterar_status_favorito(contatos, indice_contato)
     elif escolha == "5":
         visualizar_favorito(contatos)
+    elif escolha == "6":
+        visualizar_contato(contatos)
+        indice_contato = input("Qual contato deseja deletar: ")
+        deletar_contatos(contatos, indice_contato)
+        visualizar_contato(contatos)
     else:
        print("Encerrado")
